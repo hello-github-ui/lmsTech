@@ -4,15 +4,15 @@
  * @LastEditors: 白羽
  * @LastEditTime: 2023-04-24 10:06:45
  * @FilePath: \lmsTech\test.html
- * @Description: 
+ * @Description:
 -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Document</title>
     <style>
         .LogHelper {
@@ -28,270 +28,272 @@
 </head>
 
 <body>
-    <container-element class="normal"
-        style="left: 10px; top: 50px; font: 14px Menlo, Monaco, Consolas, 'Courier New', monospace;">
-        <style>
-            /** 默认字体 */
-            /** 输入框默认边距 */
-            ul,
-            ol {
-                padding-left: 16px;
-                margin: 0px;
-            }
+<container-element class="normal"
+                   style="left: 10px; top: 50px; font: 14px Menlo, Monaco, Consolas, 'Courier New', monospace;">
+    <style>
+        /** 默认字体 */
+        /** 输入框默认边距 */
+        ul,
+        ol {
+            padding-left: 16px;
+            margin: 0px;
+        }
 
-            a {
-                color: #1890ff;
-            }
+        a {
+            color: #1890ff;
+        }
 
-            hr {
-                border-style: solid;
-                border-color: #63636346;
-                border-width: 0px;
-                border-bottom: 1px solid #63636346;
-                margin-block-start: 1em;
-                margin-block-end: 1em;
-            }
+        hr {
+            border-style: solid;
+            border-color: #63636346;
+            border-width: 0px;
+            border-bottom: 1px solid #63636346;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+        }
 
-            container-element.close {
-                display: none;
-            }
+        container-element.close {
+            display: none;
+        }
 
-            container-element.minimize {
-                min-width: unset;
-            }
+        container-element.minimize {
+            min-width: unset;
+        }
 
-            container-element {
-                position: fixed;
-                top: 10%;
-                left: 10%;
-                z-index: 9999999999;
-                text-align: left;
-                min-width: 300px;
-                -webkit-font-smoothing: antialiased;
-                -moz-osx-font-smoothing: grayscale;
-                color: #636363;
-                box-shadow: 0 0 24px -12px #3f3f3f;
-                border-radius: 8px;
-            }
+        container-element {
+            position: fixed;
+            top: 10%;
+            left: 10%;
+            z-index: 9999999999;
+            text-align: left;
+            min-width: 300px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: #636363;
+            box-shadow: 0 0 24px -12px #3f3f3f;
+            border-radius: 8px;
+        }
 
-            container-element .header {
-                display: flex;
-                align-items: center;
-                background-color: white;
-                border-radius: 8px 8px 0px 0px;
-                user-select: none;
-                padding: 4px;
-                color: #000;
-                line-height: normal;
-                height: auto;
-                position: static;
-            }
+        container-element .header {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 8px 8px 0px 0px;
+            user-select: none;
+            padding: 4px;
+            color: #000;
+            line-height: normal;
+            height: auto;
+            position: static;
+        }
 
-            container-element .header .profile {
-                flex: 1;
-                cursor: move;
-            }
+        container-element .header .profile {
+            flex: 1;
+            cursor: move;
+        }
 
-            container-element .header .switch:hover,
-            container-element .header .dropdown:hover {
-                background-color: #f3f3f3;
-            }
+        container-element .header .switch:hover,
+        container-element .header .dropdown:hover {
+            background-color: #f3f3f3;
+        }
 
-            container-element .header .close:hover {
-                background-color: #ff000038;
-            }
+        container-element .header .close:hover {
+            background-color: #ff000038;
+        }
 
-            container-element .header .switch,
-            container-element .header .close {
-                cursor: pointer;
-            }
+        container-element .header .switch,
+        container-element .header .close {
+            cursor: pointer;
+        }
 
-            container-element .header .dropdown {
-                line-height: 24px;
-            }
+        container-element .header .dropdown {
+            line-height: 24px;
+        }
 
-            container-element .header .switch,
-            container-element .header .close,
-            container-element .header .profile {
-                display: inline-flex;
-                align-items: center;
-                padding: 0px 8px;
-            }
+        container-element .header .switch,
+        container-element .header .close,
+        container-element .header .profile {
+            display: inline-flex;
+            align-items: center;
+            padding: 0px 8px;
+        }
 
-            container-element .logo {
-                width: 18px;
-                height: 18px;
-                cursor: pointer;
-            }
-
-
-
-            container-element .body {
-                overflow: auto;
-                width: auto;
-                height: 100%;
-            }
-
-            script-panel-element {
-                display: block;
-                background-color: white;
-                border-radius: 0px 0px 8px 8px;
-                padding: 0px 8px 12px 8px;
-                resize: vertical;
-                overflow: auto;
-
-            }
-
-            script-panel-element .script-panel-body {
-                padding: 0px 8px;
-            }
-
-            script-panel-element+script-panel-element {
-                margin-top: 12px;
-            }
-
-            container-element .card+.card {
-                margin-top: 12px;
-            }
-
-
-            container-element .card {
-                background-color: white;
-                border-radius: 2px;
-                padding: 0px 8px;
-                border: none;
-            }
-
-            container-element .separator {
-                display: flex;
-                align-items: center;
-                text-align: center;
-                padding-bottom: 4px;
-            }
-
-            container-element .separator::before,
-            container-element .separator::after {
-                content: '';
-                flex: 1;
-                border-bottom: 1px solid #63636346;
-            }
-
-
-            container-element .console {
-                max-height: 300px;
-                max-width: 400px;
-                overflow: auto;
-                background-color: #292929;
-                padding: 12px 6px;
-                color: #ececec;
-                font-size: 12px;
-            }
-
-            container-element .console .item {
-                padding: 3px 0px;
-                border-radius: 2px;
-            }
-
-            container-element .console .item .time {
-                color: #757575;
-            }
-
-            container-element .console .item .info {
-                background-color: #2196f3a3;
-            }
-
-            container-element .console .item .warn {
-                background-color: #ffc107db;
-            }
-
-            container-element .console .item .error {
-                background-color: #f36c71cc;
-            }
-
-            container-element .console .item .debug,
-            container-element .console .item .log {
-                background-color: #9e9e9ec4;
-            }
-
-            container-element .console *::selection {
-                background-color: #ffffff6b;
-            }
-
-            /* 设置滚动条的样式 */
-            container-element ::-webkit-scrollbar {
-                width: 10px;
-                height: 10px;
-            }
-
-            /* 滚动槽 */
-            container-element ::-webkit-scrollbar-track {
-                background: #ffffffd8;
-                border-radius: 4px;
-                margin: 4px;
-            }
-
-            /* 滚动条滑块 */
-            container-element ::-webkit-scrollbar-thumb {
-                border-radius: 4px;
-                background: rgba(0, 0, 0, 0.253);
-                box-shadow: inset006pxrgba(0, 0, 0, 0.3);
-            }
-
-            .footer {
-                text-align: center;
-            }
-
-            .footer a {
-                text-decoration: none;
-            }
-        </style>
-        <div class="message-container"></div><header-element class="header" data-title="菜单栏-可拖动区域">
-            <div class="profile" data-title="菜单栏（可拖动区域）">日志输出</div>
-        </header-element>
-        <div class="body" style="max-height: 294px; max-width: 1870px;"><script-panel-element>
-                <div class="separator">📄 日志输出</div>
-                <div class="notes card"></div>
-                <div class="configs card">
-                    <div class="configs-body"></div>
-                </div>
-                <div class="script-panel-body">
-                    <div class="card console">
-
-                    </div>
-                </div>
-            </script-panel-element></div>
-        <div class="footer">
-            <a id="startTech" href="javascript:void(0);">点我开始</a>
-        </div>
-    </container-element>
-    <script>
-        const odiv = document.querySelector("container-element");
-
-        //给需要移动的元素添加onmousedown事件
-        odiv.onmousedown = function (ev) {
-            let event = window.event || ev;
-            // 获取屏幕中可视化的宽高的坐标
-            let dx = event.clientX - odiv.offsetLeft;
-            let dy = event.clientY - odiv.offsetTop;
-            console.log(event);
-            console.log(dy)
-            //实时改变目标元素odiv的位置
-            document.onmousemove = function (ev) {
-                let event = window.event || ev;
-                odiv.style.left = event.clientX - dx + 'px';
-                odiv.style.top = event.clientY - dy + 'px';
-            }
-
-            //抬起停止拖动
-            document.onmouseup = function () {
-                document.onmousemove = null;
-                document.onmouseup = null;
-
-            }
+        container-element .logo {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
         }
 
 
-    </script>
+        container-element .body {
+            overflow: auto;
+            width: auto;
+            height: 100%;
+        }
+
+        script-panel-element {
+            display: block;
+            background-color: white;
+            border-radius: 0px 0px 8px 8px;
+            padding: 0px 8px 12px 8px;
+            resize: vertical;
+            overflow: auto;
+
+        }
+
+        script-panel-element .script-panel-body {
+            padding: 0px 8px;
+        }
+
+        script-panel-element + script-panel-element {
+            margin-top: 12px;
+        }
+
+        container-element .card + .card {
+            margin-top: 12px;
+        }
+
+
+        container-element .card {
+            background-color: white;
+            border-radius: 2px;
+            padding: 0px 8px;
+            border: none;
+        }
+
+        container-element .separator {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding-bottom: 4px;
+        }
+
+        container-element .separator::before,
+        container-element .separator::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #63636346;
+        }
+
+
+        container-element .console {
+            max-height: 300px;
+            max-width: 400px;
+            overflow: auto;
+            background-color: #292929;
+            padding: 12px 6px;
+            color: #ececec;
+            font-size: 12px;
+        }
+
+        container-element .console .item {
+            padding: 3px 0px;
+            border-radius: 2px;
+        }
+
+        container-element .console .item .time {
+            color: #757575;
+        }
+
+        container-element .console .item .info {
+            background-color: #2196f3a3;
+        }
+
+        container-element .console .item .warn {
+            background-color: #ffc107db;
+        }
+
+        container-element .console .item .error {
+            background-color: #f36c71cc;
+        }
+
+        container-element .console .item .debug,
+        container-element .console .item .log {
+            background-color: #9e9e9ec4;
+        }
+
+        container-element .console *::selection {
+            background-color: #ffffff6b;
+        }
+
+        /* 设置滚动条的样式 */
+        container-element ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        /* 滚动槽 */
+        container-element ::-webkit-scrollbar-track {
+            background: #ffffffd8;
+            border-radius: 4px;
+            margin: 4px;
+        }
+
+        /* 滚动条滑块 */
+        container-element ::-webkit-scrollbar-thumb {
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.253);
+            box-shadow: inset006pxrgba(0, 0, 0, 0.3);
+        }
+
+        .footer {
+            text-align: center;
+        }
+
+        .footer a {
+            text-decoration: none;
+        }
+    </style>
+    <div class="message-container"></div>
+    <header-element class="header" data-title="菜单栏-可拖动区域">
+        <div class="profile" data-title="菜单栏（可拖动区域）">日志输出</div>
+    </header-element>
+    <div class="body" style="max-height: 294px; max-width: 1870px;">
+        <script-panel-element>
+            <div class="separator">📄 日志输出</div>
+            <div class="notes card"></div>
+            <div class="configs card">
+                <div class="configs-body"></div>
+            </div>
+            <div class="script-panel-body">
+                <div class="card console">
+
+                </div>
+            </div>
+        </script-panel-element>
+    </div>
+    <div class="footer">
+        <a href="javascript:void(0);" id="startTech">点我开始</a>
+    </div>
+</container-element>
+<script>
+    const odiv = document.querySelector("container-element");
+
+    //给需要移动的元素添加onmousedown事件
+    odiv.onmousedown = function (ev) {
+        let event = window.event || ev;
+        // 获取屏幕中可视化的宽高的坐标
+        let dx = event.clientX - odiv.offsetLeft;
+        let dy = event.clientY - odiv.offsetTop;
+        console.log(event);
+        console.log(dy)
+        //实时改变目标元素odiv的位置
+        document.onmousemove = function (ev) {
+            let event = window.event || ev;
+            odiv.style.left = event.clientX - dx + 'px';
+            odiv.style.top = event.clientY - dy + 'px';
+        }
+
+        //抬起停止拖动
+        document.onmouseup = function () {
+            document.onmousemove = null;
+            document.onmouseup = null;
+
+        }
+    }
+
+
+</script>
 </body>
 
 </html>

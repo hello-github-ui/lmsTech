@@ -137,7 +137,9 @@ const interval = {
 
     // 等待指定时间
     function wait(ms) {
-        return new Promise(resolve => { setTimeout(resolve, ms); });
+        return new Promise(resolve => {
+            setTimeout(resolve, ms);
+        });
     }
 
     /**
@@ -252,6 +254,7 @@ const interval = {
         // 等待一段时间后执行returnCoursePage函数
         setTimeout(returnCoursePage, interval.webLink);
     }
+
     function openApiMaterial() { // 用API去完成查看附件
         const id = document.URL.match(/.*\/\/lms.ouchn.cn\/course\/[0-9]+\/learning-activity\/full-screen.+\/([0-9]+)/)[1];
         const res = new Promise((resolve, reject) => {
@@ -262,13 +265,13 @@ const interval = {
                 error: reject
             })
         });
-        res.then(async ({ uploads: uploadsModels }) => {
-            uploadsModels.forEach(async ({ id: uploadId }) => {
+        res.then(async ({uploads: uploadsModels}) => {
+            uploadsModels.forEach(async ({id: uploadId}) => {
                 await wait(interval.material);
                 await new Promise(resolve => $.ajax({
                     url: `https://lms.ouchn.cn/api/course/activities-read/${id}`,
                     type: "POST",
-                    data: JSON.stringify({ upload_id: uploadId }),
+                    data: JSON.stringify({upload_id: uploadId}),
                     contentType: "application/json",
                     dataType: "JSON",
                     success: resolve,
@@ -327,7 +330,10 @@ const interval = {
                         allCollapsedElement.click();
                     }
                 }
-                if (!allCollapsedElement && !allExpandedElement) { throw new Error("无法展开所有课程 可能是元素已更改，请联系作者更新。"); } {
+                if (!allCollapsedElement && !allExpandedElement) {
+                    throw new Error("无法展开所有课程 可能是元素已更改，请联系作者更新。");
+                }
+                {
                     console.log("课程展开完成。");
                     clearInterval(timeId);
                     resolve();

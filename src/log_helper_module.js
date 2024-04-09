@@ -26,8 +26,10 @@ export function LogHelper() {
             }
         }
 
-    };
+    }
+    ;
 }
+
 LogHelper.prototype = {
     constructor: LogHelper,
     el_text:
@@ -274,7 +276,7 @@ LogHelper.prototype = {
      * @param {*} border border css
      * @returns 返回输出的dom元素
      */
-    WriteHtmlLine: (htmlContent, alignCenter = false, border = { borderTop: false, borderBottom: false }) => {
+    WriteHtmlLine: (htmlContent, alignCenter = false, border = {borderTop: false, borderBottom: false}) => {
         const document = globalThis.document;
         if (typeof document === "undefined") throw new Error("document = undefined error!");
         const el = document.createElement('div');
@@ -282,7 +284,8 @@ LogHelper.prototype = {
         el.classList.add('item');
         if (alignCenter) {
             el.style.textAlign = "center";
-        };
+        }
+        ;
         if (border.borderTop) {
             el.style.borderTop = "1px solid #767676";
         }

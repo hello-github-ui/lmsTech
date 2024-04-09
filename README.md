@@ -4,8 +4,9 @@
  * @LastEditors: 白羽
  * @LastEditTime: 2023-05-31 16:36:15
  * @FilePath: \lmsTech\README.md
- * @Description: 
+ * @Description:
 -->
+
 # 国开自动刷课（不答题考试）
 
 国开（国家开放大学）自动刷课（不答题考试） 支持自动访问线上链接、查看资料附件、观看视频、自动查看页面、自动参与发帖回帖。
@@ -23,7 +24,6 @@
 - 自动回帖发帖【完成】
 - 答题或考试【不支持】
 
-
 ## 如何安装？
 
 ### 半自动（模拟鼠标操作进行刷课）
@@ -38,7 +38,6 @@
 
 纯属国开完成了任务没算你完成。
 
-
 ### 全自动 （直接调用API进行刷课）
 
 *参考了一个GitHub项目 [点我跳转](https://github.com/windfgg/TestPuppeteerSharp)*
@@ -48,7 +47,6 @@
 [脚本猫](https://scriptcat.org/script-show-page/986/)
 
 [greasyfork](https://greasyfork.org/zh-CN/scripts/464733-%E8%B0%83%E7%94%A8%E5%9B%BD%E5%BC%80api%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE-%E4%B8%8D%E7%AD%94%E9%A2%98%E8%80%83%E8%AF%95)
-
 
 ## 使用方法
 
@@ -61,7 +59,6 @@
 ### 开源协议
 
 [GPL-3.0开源协议](https://www.gnu.org/licenses/gpl-3.0)使用脚本照成的后果原作者不承担任何责任，仅供学习交流。
-
 
 ### 作者的话
 

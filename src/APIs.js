@@ -1,4 +1,4 @@
-import { GlobalData } from "./global_config";
+import {GlobalData} from "./global_config";
 
 const globalData = new GlobalData();
 
@@ -37,7 +37,7 @@ export function addLearningBehavior(activity_id, activity_type) {
     });
 }
 
-export function addVideoLearningRecords({ start_at, end_at, syllabus_id, activity_id, upload_id }) {
+export function addVideoLearningRecords({start_at, end_at, syllabus_id, activity_id, upload_id}) {
     const url = "https://lms.ouchn.cn/statistics/api/online-videos";
     const duration = Math.ceil(Math.random() * 300 + 40);
     const data = JSON.stringify({
@@ -73,7 +73,8 @@ export function addVideoLearningRecords({ start_at, end_at, syllabus_id, activit
         });
     });
 }
-export function postLearningActiVities({ activity_id, activity_type, is_open, activity_name = null }) {
+
+export function postLearningActiVities({activity_id, activity_type, is_open, activity_name = null}) {
     const url = `https://lms.ouchn.cn/statistics/api/learning-activity`;
     const data = JSON.stringify({
         "org_id": globalData.user.orgId,
@@ -125,7 +126,7 @@ export function getActivityReadsForUser() {
 
 export function postForum(
     CategoryId,
-    { title, content } = {
+    {title, content} = {
         title: `好好学习${Date.now()}`,
         content: `<p>好好学习，天天向上。${Date.now()}</p>`
     }

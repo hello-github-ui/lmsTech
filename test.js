@@ -1,5 +1,5 @@
-function fn ({a, b = 1}) {
+function fn({a, b = 1}) {
     console.log(a, b);
 }
 
-fn({a:1})
+fn({a: 1})

@@ -24,6 +24,7 @@
 function LogHelper() {
     if (document.querySelector('container-element') == null) $('.wrapper').append(this.el_text);
 }
+
 LogHelper.prototype = {
     constructor: LogHelper,
     el_text:
@@ -263,13 +264,14 @@ LogHelper.prototype = {
     </div>
 </container-element>
     `,
-    WriteHtmlLine: (htmlContent, alignCenter = false, border = { borderTop: false, borderBottom: false }) => {
+    WriteHtmlLine: (htmlContent, alignCenter = false, border = {borderTop: false, borderBottom: false}) => {
         const el = document.createElement('div');
         container = document.querySelector('container-element');
         el.classList.add('item');
         if (alignCenter) {
             el.style.textAlign = "center";
-        };
+        }
+        ;
         if (border.borderTop) {
             el.style.borderTop = "1px solid #767676";
         }
@@ -310,8 +312,8 @@ LogHelper.prototype = {
             case "log":
                 color = "#9e9e9ec4";
         }
-        
-       
+
+
         console.log("\n" + htmlContent, `color: #fff; background: ${color}; padding: 3px 2px; border-radius: 3px;`);
     }
 
@@ -377,6 +379,7 @@ const wait = async (sleep) => new Promise(resolve => setTimeout(resolve, sleep))
         "useSinglePage": true,
         "expandActivityInfo": false
     }
+
     function addLearningBehavior(activity_id, activity_type) {
         const duration = Math.ceil(Math.random() * 300 + 40);
         const data = JSON.stringify({
@@ -410,7 +413,8 @@ const wait = async (sleep) => new Promise(resolve => setTimeout(resolve, sleep))
             });
         });
     }
-    function addVideoLearningRecords({ start_at, end_at, syllabus_id, activity_id, upload_id }) {
+
+    function addVideoLearningRecords({start_at, end_at, syllabus_id, activity_id, upload_id}) {
         const url = "https://lms.ouchn.cn/statistics/api/online-videos";
         const duration = Math.ceil(Math.random() * 300 + 40);
         const data = JSON.stringify({
@@ -446,23 +450,24 @@ const wait = async (sleep) => new Promise(resolve => setTimeout(resolve, sleep))
             });
         });
     }
+
     async function LearnCourseId(courseId) {
-        Log.WriteHtmlLine("===== 初始化中 =====", true, { borderBottom: true });
+        Log.WriteHtmlLine("===== 初始化中 =====", true, {borderBottom: true});
         const getCriterion = completion_criterion => completion_criterion == undefined || completion_criterion == "" ? "无" : completion_criterion;
         const StartTime = performance.now(); // 代码开始时间
-        const StartCompletenessData = await new Promise(resolve => $.get(`https://lms.ouchn.cn/api/course/${courseId}/my-completeness`, (data, status, xhr) => status === "success" ? resolve(data) : { study_completeness: undefined }));
-        const { study_completeness: StrartCompleteness } = StartCompletenessData;
-        const CoursesModulesData = await new Promise(resolve => $.get(`https://lms.ouchn.cn/api/courses/${courseId}/modules`, (data, status, xhr) => status === "success" ? resolve(data) : { modules: [] }));
-        const { modules: CoursesModulesModels } = CoursesModulesData;
+        const StartCompletenessData = await new Promise(resolve => $.get(`https://lms.ouchn.cn/api/course/${courseId}/my-completeness`, (data, status, xhr) => status === "success" ? resolve(data) : {study_completeness: undefined}));
+        const {study_completeness: StrartCompleteness} = StartCompletenessData;
+        const CoursesModulesData = await new Promise(resolve => $.get(`https://lms.ouchn.cn/api/courses/${courseId}/modules`, (data, status, xhr) => status === "success" ? resolve(data) : {modules: []}));
+        const {modules: CoursesModulesModels} = CoursesModulesData;
         const CompletedCourseData = StartCompletenessData;
         const CompletedCourseModels = CompletedCourseData.completed_result.completed.learning_activity;
         for (let CoursesModulesModel of CoursesModulesModels) {
             let sleep = parseInt((Math.random() * (13 - 8) + 8) * 1000); // 取8000 - 13000之间的毫秒随机数
             await wait(sleep);
-            Log.WriteHtmlLine(`课程模块：${CoursesModulesModel.name}(${CoursesModulesModel.id}) 当前进度${StrartCompleteness}% 随机延迟: <span class="time">${sleep}毫秒</span>`, true, { borderBottom: true });
+            Log.WriteHtmlLine(`课程模块：${CoursesModulesModel.name}(${CoursesModulesModel.id}) 当前进度${StrartCompleteness}% 随机延迟: <span class="time">${sleep}毫秒</span>`, true, {borderBottom: true});
             // 日志输出
-            const LearnActivitieData = await new Promise(resolve => $.get(`https://lms.ouchn.cn/api/course/${courseId}/all-activities?module_ids=[${CoursesModulesModel.id}]&activity_types=learning_activities,exams,classrooms`, (data, status, xhr) => status === "success" ? resolve(data) : { learning_activities: [] }));
-            const { learning_activities: LearnActivitieModels } = LearnActivitieData;
+            const LearnActivitieData = await new Promise(resolve => $.get(`https://lms.ouchn.cn/api/course/${courseId}/all-activities?module_ids=[${CoursesModulesModel.id}]&activity_types=learning_activities,exams,classrooms`, (data, status, xhr) => status === "success" ? resolve(data) : {learning_activities: []}));
+            const {learning_activities: LearnActivitieModels} = LearnActivitieData;
             try {
                 for (let LearnActivitieModel of LearnActivitieModels) {
                     const {
@@ -475,10 +480,10 @@ const wait = async (sleep) => new Promise(resolve => setTimeout(resolve, sleep))
 
                     } = LearnActivitieModel;
                     if (CompletedCourseModels.indexOf(parseInt(id)) !== -1) {
-                        Log.WriteHtmlLine(`课程模块：${CoursesModulesModel.name} 模块标题：${title}(${notificationTypesAndText[type]}) 完成标准：${getCriterion(completion_criterion)}(${id}) <span class="info">已完成 跳过</span>`, false, { borderBottom: true });
+                        Log.WriteHtmlLine(`课程模块：${CoursesModulesModel.name} 模块标题：${title}(${notificationTypesAndText[type]}) 完成标准：${getCriterion(completion_criterion)}(${id}) <span class="info">已完成 跳过</span>`, false, {borderBottom: true});
                         continue;
                     } else {
-                        Log.WriteHtmlLine(`课程模块：${CoursesModulesModel.name} 模块标题：${title}(${notificationTypesAndText[type]}) 完成标准：${getCriterion(completion_criterion)}(${id}) <span class="log">任务开始</span>`, false, { borderBottom: true });
+                        Log.WriteHtmlLine(`课程模块：${CoursesModulesModel.name} 模块标题：${title}(${notificationTypesAndText[type]}) 完成标准：${getCriterion(completion_criterion)}(${id}) <span class="log">任务开始</span>`, false, {borderBottom: true});
                     }
 
                     if (type === "online_video") {
@@ -510,7 +515,7 @@ const wait = async (sleep) => new Promise(resolve => setTimeout(resolve, sleep))
                                         url: `https://lms.ouchn.cn/api/course/activities-read/${id}`,
                                         contentType: "application/json",
                                         dataType: "JSON",
-                                        data: JSON.stringify({ start: 0, end: item.duration }),
+                                        data: JSON.stringify({start: 0, end: item.duration}),
                                         success: resolve,
                                         error: resolve
                                     }));
@@ -525,7 +530,7 @@ const wait = async (sleep) => new Promise(resolve => setTimeout(resolve, sleep))
                                     url: `https://lms.ouchn.cn/api/course/activities-read/${id}`,
                                     contentType: "application/json",
                                     dataType: "JSON",
-                                    data: JSON.stringify({ upload_id: uploadModel.id }),
+                                    data: JSON.stringify({upload_id: uploadModel.id}),
                                     success: resolve
                                 }));
                                 Log.WriteHtmlLine(`模块标题：${title}(${notificationTypesAndText[type]}) 完成标准：${getCriterion(completion_criterion)} <span class="info">完成</span>`);
@@ -533,7 +538,7 @@ const wait = async (sleep) => new Promise(resolve => setTimeout(resolve, sleep))
                             break;
                         case "forum":
                             if (title === "课程答疑讨论区") {
-                                const { topic_category: { id: CategoryId } } = await new Promise(resolve => $.get(`https://lms.ouchn.cn/api/forum/${id}/category?fields=id`, {}, resolve));
+                                const {topic_category: {id: CategoryId}} = await new Promise(resolve => $.get(`https://lms.ouchn.cn/api/forum/${id}/category?fields=id`, {}, resolve));
                                 await new Promise(resolve => $.ajax({
                                     type: "POST",
                                     url: `https://lms.ouchn.cn/api/topics`,
@@ -563,14 +568,14 @@ const wait = async (sleep) => new Promise(resolve => setTimeout(resolve, sleep))
                     }
                 }
             } catch (error) {
-                Log.WriteHtmlLine(`<span class="error">代码出现了异常 按F12在控制台查看错误。</span>`, true, { borderBottom: true });
+                Log.WriteHtmlLine(`<span class="error">代码出现了异常 按F12在控制台查看错误。</span>`, true, {borderBottom: true});
                 console.error(error);
                 await new Promise(resolve => setTimeout(resolve, sleep));
             }
-            Log.WriteHtmlLine(`课程模块：${CoursesModulesModel.name}(${CoursesModulesModel.id}) 随机延迟: <span class="time">${sleep}毫秒</span>`, true, { borderBottom: true });
+            Log.WriteHtmlLine(`课程模块：${CoursesModulesModel.name}(${CoursesModulesModel.id}) 随机延迟: <span class="time">${sleep}毫秒</span>`, true, {borderBottom: true});
         }
-        const EndCompletenessData = await new Promise(resolve => $.get(`https://lms.ouchn.cn/api/course/${courseId}/my-completeness`, (data, status, xhr) => status === "success" ? resolve(data) : { study_completeness: undefined }));
-        const { study_completeness: EndCompleteness } = EndCompletenessData;
+        const EndCompletenessData = await new Promise(resolve => $.get(`https://lms.ouchn.cn/api/course/${courseId}/my-completeness`, (data, status, xhr) => status === "success" ? resolve(data) : {study_completeness: undefined}));
+        const {study_completeness: EndCompleteness} = EndCompletenessData;
         const EndTime = performance.now(); // 代码结束时间
         Log.WriteHtmlLine(`学习前进度:${StrartCompleteness}% 学习后进度:${EndCompleteness}% 耗时: <span class="time">${((EndTime - StartTime) / 1000).toFixed(2)}秒</span>`);
     }
